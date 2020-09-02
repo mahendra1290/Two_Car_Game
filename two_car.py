@@ -1,4 +1,3 @@
-
 #author: Mahendra Suthar & Piyush Bhutani
 #it is opened up again
 #First Game 
@@ -12,7 +11,7 @@ win = pygame.display.set_mode((500, 700))
 pygame.display.set_caption("Two Car")
 i_b = 0
 i_c = 0                                  #left lane object counter
-obstr = ["box.fw.png" ,"ring.fw.png"]    #obstacle type  ring and box
+obstr = ["static/box.fw.png" ,"static/ring.fw.png"]    #obstacle type  ring and box
 objcoun_L   = 0                          #similar items added in lane
 objlane_L   = 0                          #similar items in lane
 objcoun_R   = 0                          #similar items added in lane
@@ -110,6 +109,7 @@ class Car():
     """creates car object"""
     def __init__(self,x,y,height,width,z):
         self.r      = False                    #to keep car moving to right          
+        self.r      = False                    #to keep car moving to right          
         self.l      = False                    #to keep car moving to left
         self.mov_r  = False                    #true if car is moving to right
         self.mov_l  = False                    #true if car is moving to left
@@ -187,10 +187,10 @@ def collision(x, y, x_size, y_size):
 gap_box = random.choice(zx)
 
 #setting font and size for different text elements
-mainfont_1 = Foont("comic.ttf", 80)
-mainfont = Foont("comic.ttf", 60)
-secon_1  = Foont("comic.ttf", 40)
-secon_2  = Foont("comic.ttf", 35)
+mainfont_1 = Foont("text/comic.ttf", 80)
+mainfont = Foont("text/comic.ttf", 60)
+secon_1  = Foont("text/comic.ttf", 40)
+secon_2  = Foont("text/comic.ttf", 35)
 
 #setting up all the text used in game
 two_car  = Text("2 Car game"  ,(255,119,0), mainfont.text_obj, 250, 300)
@@ -225,8 +225,8 @@ start_lines.add_lines((0, 700), (500, 0), black)
 #this is our game start lines end
 
 #setting up cars
-car_1  = Car(30,570,80,60,"car.fw.png")
-car_2  = Car(280,570,80,60,"car_1.fw.png")
+car_1  = Car(30,570,80,60,"static/car.fw.png")
+car_2  = Car(280,570,80,60,"static/car_1.fw.png")
 
 #setting up obstacles of game
 box_1  = Obstacle(0,0,obstr[0],38, 163)
@@ -334,7 +334,7 @@ while run:
     while game_over:
         if fileread:
             ##print("yess")
-            scoree = open("score.txt","r")
+            scoree = open("text/score.txt","r")
             while True:
                 scoreline = scoree.readline()
                 if len(scoreline) == 0:
@@ -346,7 +346,7 @@ while run:
                     ss = scor
                 else:
                     ss = int(sce[2])
-                sc = open("score.txt","w")
+                sc = open("text/score.txt","w")
                 sc.write("highscore is "+str(ss))
                 sc.close()
             scoree.close()
@@ -412,7 +412,6 @@ while run:
         car_2.x = 280
         game_start_act = True
         continue
-    
     win.fill((4, 4, 0))
     lane_lines.draw_line(win)
     car_1.draw()
@@ -432,11 +431,11 @@ while run:
         if new_box_L == oldbox_L:
             objcoun_L += 1
             if objcoun_L == 3:
-                if new_box_L == "box.fw.png":
-                    new_box_L = "ring.fw.png"
+                if new_box_L == "static/box.fw.png":
+                    new_box_L = "static/ring.fw.png"
                     box_L[i_b].update_img(new_box_L)
                 else:
-                    new_box_L = "box.fw.png"
+                    new_box_L = "static/box.fw.png"
                     box_L[i_b].update_img(new_box_L)
                 objcoun_L = 0
         else:
@@ -463,7 +462,7 @@ while run:
         j.move()
         if collision(j, car_1, (50, 50), 60):
             #print("collision"+j.name)
-            if j.name == "box.fw.png":
+            if j.name == "static/box.fw.png":
                 game_over = True
                 j.y = 850
                 break
@@ -472,7 +471,7 @@ while run:
             j.y = 850
             j.curt = False
         else:
-            if j.name == "ring.fw.png" and j.y == 690:
+            if j.name == "static/ring.fw.png" and j.y == 690:
                 game_over = True
                 break
     if len(temp_box_L) > 0 and temp_box_L[0].curt == False:
@@ -495,11 +494,11 @@ while run:
         if new_box_R == oldbox_R:
             objcoun_R += 1
             if objcoun_R == 3:
-                if new_box_R == "box.fw.png":
-                    new_box_R = "ring.fw.png"
+                if new_box_R == "static/box.fw.png":
+                    new_box_R = "static/ring.fw.png"
                     box_R[i_c].update_img(new_box_R)
                 else:
-                    new_box_R = "box.fw.png"
+                    new_box_R = "static/box.fw.png"
                     box_R[i_c].update_img(new_box_R)
                 objcoun_R = 0
         else:
@@ -525,7 +524,7 @@ while run:
         k.move()
         if collision(k, car_2, (50, 50), 60):
             #print("collision"+j.name)
-            if k.name == "box.fw.png":
+            if k.name == "static/box.fw.png":
                 game_over = True
                 k.y = 850
                 break
@@ -534,7 +533,7 @@ while run:
             k.y = 850
             k.curt = False
         else:
-            if k.name == "ring.fw.png" and k.y == 690:
+            if k.name == "static/ring.fw.png" and k.y == 690:
                 game_over = True
                 break
     if len(temp_box_R) > 0 and temp_box_R[0].curt == False:
@@ -553,3 +552,4 @@ while run:
     ##clock.tick(120)
     pygame.display.update()
 pygame.quit()
+
