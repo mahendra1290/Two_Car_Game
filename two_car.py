@@ -203,7 +203,7 @@ contiue  = Text("Continue"    , (217, 183, 119), secon_1.text_obj, 135, 370)
 mn_score = Text("Your score is "+ str(scor), (255,119,0), secon_1.text_obj, 220, 430)
 score    = Text("Score = "+str(scor), (255,119,0), secon_2.text_obj, 400, 40)
 high     = Text("Highscore is ", (255,119,0), secon_1.text_obj, 220, 490)
-tame     = Text(str(tme)       ,(255,119,0), mainfont_1.text_obj, 250, 350)
+tame     = Text(str(tme)       ,(255,119,0), mainfont_2.text_obj, 250, 350)
 
 #setting up our main class of lines to 
 #to group together
